@@ -32,3 +32,11 @@ DynamicRad is built upon standard FlashAttention-2 and highly optimized sparse k
 conda create -n dynamicrad python=3.10 -y
 conda activate dynamicrad
 pip install torch==2.4.0 torchvision==0.19.0 torchaudio==0.15.2 --index-url [https://download.pytorch.org/whl/cu121](https://download.pytorch.org/whl/cu121)
+
+
+# Clone the anonymous repository
+git clone <anonymous_repo_link>
+cd DynamicRad
+
+# Install basic requirements
+pip install -r requirements.txt
