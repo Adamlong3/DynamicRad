@@ -1,4 +1,4 @@
-# 🚀 DynamicRad: Adaptive Spatiotemporal Sparsity for Long Video Diffusion
+# 🚀 DynamicRad: Content-Adaptive Sparse Attention for Long Video Diffusion
 
 <div align="center">
 
