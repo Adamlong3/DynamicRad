@@ -13,7 +13,7 @@
 
 ---
 
-**DynamicRad** is a unified sparse-attention paradigm that reconciles kernel-friendly structure with content adaptivity for long video diffusion models (e.g., Wan2.1-14B and HunyuanVideo). By introducing an **Offline Bayesian Optimization (BO) pipeline** and a lightweight **Semantic Motion Router**, DynamicRad pushes the efficiency-quality Pareto frontier, achieving **1.7×–2.5× inference speedups** with **over 80% effective sparsity** on NVIDIA H100 GPUs, without the overhead of online neural architecture search.
+**DynamicRad** is a unified sparse-attention paradigm that reconciles kernel-friendly structure with content adaptivity for long video diffusion models (e.g., Wan2.1-14B and HunyuanVideo). By introducing an **Offline Bayesian Optimization (BO) pipeline** and a lightweight **Semantic Motion Router**, DynamicRad achieves a strong efficiency-quality trade-off, obtaining **1.7×–2.5× inference speedups** with **over 80% effective sparsity** on NVIDIA H100 GPUs, without the overhead of online neural architecture search.
 
 ---
 
@@ -46,14 +46,16 @@
 
 ## 🛠️ Installation & Environment Setup
 
-DynamicRad is built on top of standard FlashAttention-2 and highly optimized sparse kernels.
+DynamicRad is built on top of PyTorch/Diffusers and optimized sparse-attention kernels. We tested the code with Python 3.12, PyTorch 2.5.1 + CUDA 12.4, FlashInfer 0.5.1, and SageAttention 2.2.0.
 
 ### 1. Base Environment
 
 ```bash
-conda create -n dynamicrad python=3.10 -y
+conda create -n dynamicrad python=3.12 -y
 conda activate dynamicrad
-pip install torch==2.4.0 torchvision==0.19.0 torchaudio==0.15.2 --index-url https://download.pytorch.org/whl/cu121
+
+# PyTorch stack tested with CUDA 12.4
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
 ```
 
 ### 2. Install Dependencies
@@ -63,20 +65,20 @@ pip install torch==2.4.0 torchvision==0.19.0 torchaudio==0.15.2 --index-url http
 git clone <anonymous_repo_link>
 cd DynamicRad
 
-# Install basic requirements
+# Install general Python dependencies
 pip install -r requirements.txt
 ```
 
 ### 3. Install Core Attention Kernels
 
-To achieve the reported speedups, DynamicRad relies on `flashinfer` and optionally `sageattention` depending on your hardware setup.
+To reproduce the reported speedups, DynamicRad relies on FlashInfer and SageAttention. Other CUDA/PyTorch versions may require matching kernel wheels.
 
 ```bash
-# Install FlashInfer (example for CUDA 12.1, Torch 2.4)
-pip install flashinfer -i https://flashinfer.ai/whl/cu121/torch2.4
+# FlashInfer, tested with CUDA 12.4 and PyTorch 2.5
+pip install flashinfer-python==0.5.1 -i https://flashinfer.ai/whl/cu124/torch2.5
 
-# Install SageAttention (optional but recommended for selected hardware architectures)
-pip install sageattention==1.0.6
+# SageAttention
+pip install sageattention==2.2.0
 ```
 
 ---
@@ -155,6 +157,7 @@ DynamicRad/
 │   └── wan2_1/             # Monkey-patching scripts for Wan2.1-14B
 ├── scripts/                # End-to-end inference, evaluation, and plotting scripts
 ├── assets/                 # README figures and visualization assets
+├── requirements.txt        # General Python dependencies
 └── README.md
 ```
 
