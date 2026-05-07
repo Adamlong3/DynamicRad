@@ -110,7 +110,7 @@ A core contribution of DynamicRad is the **Offline BO pipeline**, which models s
 
 ```bash
 # Run 30 trials of TPE optimization across Low, Mid, and High motion regimes
-python dynamicrad/bo_pipeline/run_bo_pipeline.py --steps 30
+python bo_pipeline/run_bo_pipeline.py --steps 30
 ```
 
 This will automatically generate the lookup table used by the Semantic Motion Router, for example:
@@ -149,14 +149,12 @@ DynamicRad achieves strong trade-offs between computational efficiency and gener
 
 ```text
 DynamicRad/
-├── dynamicrad/
-│   ├── attention/          # Core dual-mode sparse attention and mask generation
-│   └── bo_pipeline/        # Offline BO proxy task and feature simulator
+├── attention/              # Core dual-mode sparse attention and mask generation
+├── bo_pipeline/            # Offline BO proxy task, feature simulator, and LUT generation
 ├── models/
 │   └── wan2_1/             # Monkey-patching scripts for Wan2.1-14B
-├── scripts/                # End-to-end inference and plotting scripts
-├── configs/                # Pre-computed BO lookup tables (LUT)
-├── assets/                 # README figures
+├── scripts/                # End-to-end inference, evaluation, and plotting scripts
+├── assets/                 # README figures and visualization assets
 └── README.md
 ```
 
