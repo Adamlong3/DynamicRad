@@ -54,7 +54,7 @@ def evaluate_trial(trial, q, k, dense_weights, frames, block_size, mode,
 
     params = {}
     if mode == "static_ratio":
-        params["topk_ratio1"] = trial.suggest_float("topk_ratio1", 0.3, 1.0)
+        params["topk_ratio1"] = trial.suggest_float("topk_ratio1", 0.1, 1.0)
         params["topk_ratio2"] = trial.suggest_float("topk_ratio2", 0.1, 0.8)
     else:
         params["near_frame_threshold"] = trial.suggest_float("near_frame_threshold", -10.0, 5.0)
